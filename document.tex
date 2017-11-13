@@ -1,0 +1,44 @@
+\documentclass[11pt,letterpaper]{article}
+% OpenCV Installation Instructions
+% Some dumb doc.
+% Copyright 2017 Rebecca Pruim
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=0.75in, right=0.75in, top=0.75in, bottom=0.75in]{geometry}
+\begin{document}
+	\noindent\textbf{Installing OpenCV}\\
+	\textbf{Windows}
+	\begin{enumerate}
+		\item Download and extract the source file for OpenCV
+		\item Install CMake for Windows 
+		\item Select the source directory, and some output directory
+		\item Use Visual Studio as the generator
+		\item When CMake is finished, Navigate to the output directory and open the .sln file with Visual Studio. Build it twice, once as Debug, the other as Release. 
+		\item Add the bin/Debug and bin/Release folders to the system PATH. 
+		\item Copy the FindOpenCV.cmake file to the CLion CMake directory. Make sure to edit it so that your build directory is set in it.
+		\item You're done!
+	\end{enumerate}
+	\textbf{Linux (Ubuntu 17.10)}
+	\begin{enumerate}
+		\item Install Dependencies\\
+		\texttt{sudo apt-get install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libgstreamer-plugins-base1.0-dev}
+		\item Make a working directory\\
+		\texttt{mkdir opencv\_work \&\& cd opencv\_work}
+		\item Clone the required repositories\\
+		\texttt{git clone https://github.com/Itseez/opencv.git}\\
+		\texttt{git clone https://github.com/Itseez/opencv\_contrib.git}
+		\item Set up for build (Output Build Directory)\\
+		\texttt{cd opencv\\
+			mkdir release\\
+			cd release}
+		\item Invoke CMake (All one line) - Replace \texttt{USER} with your username.\\
+		\texttt{cmake -D CMAKE\_BUILD\_TYPE=RELEASE -D CMAKE\_INSTALL\_PREFIX=/usr/local \\-D OPENCV\_EXTRA\_MODULES\_PATH=/home/{USER}/opencv\_build/opencv\_contrib/modules\\/home/{USER}/opencv\_build/opencv/}
+		\item Make (If multi-core computer, add \texttt{-j4} as an arg. Change 4 to equal number of build threads desired)\\
+		\texttt{make}
+		\item Install\\
+		\texttt{sudo make install}
+	\end{enumerate}
+\end{document}
